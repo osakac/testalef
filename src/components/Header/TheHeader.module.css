@@ -1,0 +1,23 @@
+.headerWrapper {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 20%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  color: rgba(17, 17, 17, 48%);
+
+  a:hover {
+    color: rgba(17, 17, 17, 90%);
+  }
+}
