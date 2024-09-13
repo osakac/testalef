@@ -1,6 +1,10 @@
 <template>
   <TheHeader />
 
+  <main class="page-content">
+    <router-view />
+  </main>
+
   <TheFooter />
 </template>
 
