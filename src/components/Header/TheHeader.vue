@@ -6,10 +6,10 @@
       <nav>
         <ul :class="css.list">
           <li>
-            <router-link to="/form">Форма</router-link>
+            <router-link to="/form" :exact-active-class="css.active">Форма</router-link>
           </li>
           <li>
-            <router-link to="/preview">Превью</router-link>
+            <router-link to="/preview" :exact-active-class="css.active">Превью</router-link>
           </li>
         </ul>
       </nav>
