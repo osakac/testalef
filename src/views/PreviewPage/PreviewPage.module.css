@@ -1,0 +1,39 @@
+.wrapper {
+  max-width: 616px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.personal {
+  margin-bottom: 60px;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  width: fit-content;
+  border-radius: 5px;
+  background: #f1f1f1;
+  padding: 10px 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
