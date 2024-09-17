@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <form @submit.prevent="onSubmit" :class="css.form">
+    <form @submit.prevent :class="css.form">
       <div :class="css.personal">
         <h3>Персональные данные</h3>
         <div :class="css.formControls">
           <div :class="css.formControl">
             <span>Имя</span>
-            <input type="text" placeholder="Введите имя" />
+            <input type="text" v-model="person.name" placeholder="Введите имя" />
           </div>
           <div :class="css.formControl">
             <span>Возраст</span>
-            <input type="number" placeholder="Введите возраст" />
+            <input type="number" v-model="person.age" placeholder="Введите возраст" />
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
       <div :class="css.children">
         <h3>
           Дети (макс. 5)
-          <button @click="addChild" v-if="children.length < 5" :class="css.addChildBtn">
+          <button @click.stop="addChild" v-if="children.length < 5" :class="css.addChildBtn">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
@@ -46,19 +46,20 @@
         </div>
       </div>
 
-      <button type="submit" :class="css.submitBtn">Сохранить</button>
+      <button @click.stop="onSubmit" :class="css.submitBtn">Сохранить</button>
     </form>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import css from "./FormPage.module.css";
 
 const store = useStore();
 
-const children = ref([]);
+const person = computed(() => structuredClone(store.getters.getPerson));
+const children = ref(structuredClone(store.getters.getChildren));
 
 function addChild() {
   children.value.push({
@@ -73,10 +74,9 @@ function deleteChild(id) {
 }
 
 function onSubmit() {
-  store.commit("setChildren", children.value);
-}
+  if (!person.value.name?.trim() || !person.value.age) return;
 
-onMounted(() => {
-  children.value = store.getters.getChildren;
-});
+  store.commit("setChildren", children.value);
+  store.commit("setPerson", person.value);
+}
 </script>
