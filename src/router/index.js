@@ -4,12 +4,13 @@ const routes = [
   {
     path: "/form",
     name: "form",
-    component: () => import("../views/FormPage.vue"),
+    component: () => import("../views/FormPage/FormPage.vue"),
   },
   {
     path: "/preview",
+    alias: "/",
     name: "preview",
-    component: () => import("../views/PreviewPage.vue"),
+    component: () => import("../views/PreviewPage/PreviewPage.vue"),
   },
 ];
 
